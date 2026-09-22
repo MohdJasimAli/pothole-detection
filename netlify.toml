@@ -1,0 +1,28 @@
+# Netlify configuration.
+#
+# NOTE: Netlify hosts STATIC FILES only (HTML/CSS/JS). It cannot run the
+# Python/Flask/OpenCV backend - that lives on Render/Railway/any Python host.
+# This config publishes the dashboard UI as a static site; the dashboard
+# talks to your hosted API via window.POTHOLE_API_BASE (set it in
+# index.html or in this folder's index.html) before deploying.
+#
+# Deploy:  drag-and-drop the "netlify" folder at https://app.netlify.com/drop
+#    or:   connect your GitHub repo (base directory: ".")
+
+[build]
+  publish = "netlify"
+  # Keep the published copy in sync with the source templates on every build
+  command = "mkdir -p netlify && cp frontend/templates/index.html netlify/index.html && rm -rf netlify/static && cp -r frontend/static netlify/static"
+
+# SPA-style: serve index.html for the dashboard path
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "no-referrer"

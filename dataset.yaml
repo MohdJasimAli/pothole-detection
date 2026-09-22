@@ -1,0 +1,6 @@
+path: E:\Project\CODE\ProjectDev\data\samples
+train: images
+val: images
+test: images
+names:
+  0: pothole

@@ -1,0 +1,11 @@
+# Lightweight production dependencies (no torch).
+# The pipeline automatically falls back to ClassicalPotholeDetector when
+# torch/ultralytics are absent, so image detection still works fully.
+flask>=3.0
+flask-cors>=4.0
+waitress>=3.0
+numpy>=1.26,<3
+opencv-python-headless>=4.9
+PyYAML>=6.0
+python-dotenv>=1.0
+pytest>=8.0

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road Pothole Detection & Severity Analysis</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-road"></i>
+                    <span>SmartRoad AI</span>
+                </div>
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#detect" class="nav-link">Detect</a>
+                    <a href="#reports" class="nav-link">Reports</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Smart Road Pothole Detection & Severity Analysis</h1>
+                <p>Automated road maintenance using computer vision and deep learning</p>
+                <div class="hero-buttons">
+                    <a href="#detect" class="btn btn-primary">Start Detection</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/static/images/hero-road.svg" alt="Smart Road Pothole Detection System">
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload & Detection Section -->
+    <section id="detect" class="section">
+        <div class="container">
+            <h2 class="section-title">Pothole Detection & Analysis</h2>
+            <p class="section-subtitle">Upload a road image to detect potholes and analyze their severity</p>
+
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <p class="upload-text">Drag & drop an image, or click to browse</p>
+                <input type="file" id="imageUpload" accept="image/*" hidden>
+                <label for="imageUpload" class="btn btn-primary">Choose Image</label>
+                <div class="gps-inputs">
+                    <input type="number" step="0.000001" name="gps_lat" placeholder="GPS Latitude (optional)" class="form-input">
+                    <input type="number" step="0.000001" name="gps_lng" placeholder="GPS Longitude (optional)" class="form-input">
+                </div>
+            </div>
+
+            <button id="analyzeBtn" class="btn btn-success" style="display:none;">
+                <i class="fas fa-search"></i> Analyze Image
+            </button>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="results-section" style="display:none;">
+                <h3>Analysis Results</h3>
+                <div class="severity-summary" id="severitySummary"></div>
+                <div class="image-comparison" id="imageComparison"></div>
+                <div class="pothole-list" id="potholeList"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="pipeline-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Image Preprocessing</h4>
+                    <p>CLAHE contrast enhancement, noise reduction, and shadow removal</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Pothole Detection</h4>
+                    <p>YOLOv8 model detects pothole locations and bounding boxes</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Size & Depth Analysis</h4>
+                    <p>MiDaS depth estimation + pixel-to-cm conversion for severity</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Severity Classification</h4>
+                    <p>Rule-based matrix assigns Critical/High/Medium/Low priority</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Section -->
+    <section id="reports" class="section">
+        <div class="container">
+            <h2 class="section-title">Previous Reports</h2>
+            <div id="reportsList" class="reports-grid"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-road"></i>
+                    <span>SmartRoad AI</span>
+                </div>
+                <p class="footer-text">Road Pothole Detection & Severity Analysis System v1.0.0</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // SPLIT DEPLOYMENT: if the dashboard is hosted separately from the
+        // API (Netlify static site + API on e.g. Render), set the API
+        // origin here, for example:
+        //     window.POTHOLE_API_BASE = "https://pothole-api.onrender.com";
+        // Leave as "" when Flask serves both (local / all-in-one deploy).
+        window.POTHOLE_API_BASE = window.POTHOLE_API_BASE || "";
+    </script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
