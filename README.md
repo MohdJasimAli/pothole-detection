@@ -270,12 +270,6 @@ This project is licensed under the MIT License.
 - **KOMATSU Road Damage Dataset** - Research dataset
 - **PyTorch** - Deep learning framework
 
-## 📞 Contact
 
-- **Author**: ProjectDev Team
-- **Email**: projectdev@example.com
-- **GitHub**: github.com/projectdev/pothole-detection
 
----
-
-> **Note**: This system requires a trained YOLOv8 model for pothole detection. You can download pre-trained models from [Ultralytics GitHub](https://github.com/ultralytics/ultralytics) or train your own using road images with pothole annotations.
+> **Note**: This system requires a trained YOLOv8 model for pothole detection. You can download pre-trained models from [Ultralytics GitHub](https://github.com/ultralytics/ultralytics) or train your own using road images with pothole annotations
