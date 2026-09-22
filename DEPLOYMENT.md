@@ -1,5 +1,26 @@
 # Deployment Guide — Road Pothole Detection & Severity Analysis
 
+## ✅ DEPLOYED (Option A — live now)
+
+| Item | Value |
+|------|-------|
+| **Live app** | **https://pothole-detection-api-h1cp.onrender.com** |
+| Dashboard | https://pothole-detection-api-h1cp.onrender.com/dashboard |
+| Health check | https://pothole-detection-api-h1cp.onrender.com/api/health |
+| GitHub repo | https://github.com/MohdJasimAli/pothole-detection |
+| Render service | `pothole-detection-api` (id `srv-dapd9a9srm7s73f2p2p0`) |
+| Deploy method | Render REST API — `probe_service.py` (schema variant #1) |
+| Verified | `POST /api/analyze` → HTTP 200, 3 potholes, annotated image returned |
+
+```bash
+# Re-verify any time:
+python render_status.py <RENDER_API_KEY>   # service + deploy status
+python prod_smoke.py                       # full analyze test on the live URL
+```
+
+**Redeploy after pushing changes:** Render auto-deploys on every push to
+`main` (`autoDeploy: yes`), so `git push` is all that's needed.
+
 ## ⚠️ Why the whole project can't run *on* Netlify itself
 
 Netlify hosts **static files** (HTML/CSS/JS) and Node/Go serverless functions.

@@ -1,10 +1,21 @@
-"""Production smoke test: POST /api/analyze to the running waitress server."""
+"""Production smoke test: POST /api/analyze to the running server.
+Targets http://127.0.0.1:8080 by default, or the Render URL from
+render_deploy_info.json when a cloud deploy exists."""
 import io
 import json
+import os
 import urllib.request
 import urllib.error
 
 BASE = "http://127.0.0.1:8080"
+_info = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                     "render_deploy_info.json")
+if os.path.exists(_info):
+    with open(_info) as _f:
+        BASE = json.load(_f)["url"].rstrip("/")
+    print("Target (from render_deploy_info.json):", BASE)
+else:
+    print("Target (local):", BASE)
 IMAGE = r"E:\Project\CODE\ProjectDev\data\samples\multi_potholes.jpg"
 
 boundary = "----ProdSmokeTest"
